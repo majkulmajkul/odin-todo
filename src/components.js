@@ -1,6 +1,32 @@
 import { handleEvents } from "./handleEvents";
 
-export default function newToDoCard(project) {
+function newProjectCard(projectList) {
+  const projectFormContainer = document.createElement("div");
+
+  const projectForm = document.createElement("form");
+
+  const projectNameLabel = document.createElement("label");
+  projectNameLabel.textContent = "Name for new Project";
+  projectNameLabel.htmlFor = "new-project-name";
+  const projectNameInput = document.createElement("input");
+  projectNameInput.id = "new-project-name";
+
+  const projectSubmitButton = document.createElement("button");
+  projectSubmitButton.textContent = "Create";
+  projectForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    handleEvents.submitNewProject(projectList);
+  });
+
+  projectForm.appendChild(projectNameLabel);
+  projectForm.appendChild(projectNameInput);
+  projectForm.appendChild(projectSubmitButton);
+  projectFormContainer.appendChild(projectForm);
+
+  return projectFormContainer;
+}
+
+function newToDoCard(project) {
   const newTodoContainer = document.createElement("div");
   newTodoContainer.id = "new-todo-form-container";
 
@@ -59,3 +85,34 @@ export default function newToDoCard(project) {
 
   return newTodoContainer;
 }
+
+function toDoCard(todo, project) {
+  const toDoCardContent = document.createElement("div");
+  const toDoCardTitle = document.createElement("h3");
+  toDoCardTitle.textContent = todo.title;
+
+  const toDoCardDueDate = document.createElement("p");
+  toDoCardDueDate.textContent = `Due on ${todo.dueDate}`;
+
+  const toDoCardPriority = document.createElement("p");
+  toDoCardPriority.textContent = `Priority ${todo.priority}`;
+
+  const toToCardDescription = document.createElement("p");
+  toToCardDescription.textContent = todo.description;
+
+  const deleteText = document.createElement("p");
+  deleteText.textContent = "Delete";
+  deleteText.addEventListener("click", () =>
+    handleEvents.deleteTodoAndRerender(project, todo)
+  );
+
+  toDoCardContent.appendChild(toDoCardTitle);
+  toDoCardContent.appendChild(toDoCardDueDate);
+  toDoCardContent.appendChild(toDoCardPriority);
+  toDoCardContent.appendChild(toToCardDescription);
+  toDoCardContent.appendChild(deleteText);
+
+  return toDoCardContent;
+}
+
+export { newProjectCard, newToDoCard, toDoCard };

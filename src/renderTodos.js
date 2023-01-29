@@ -1,4 +1,4 @@
-import toDoCard from "./todoCard";
+import { toDoCard } from "./components";
 import { handleEvents } from "./handleEvents";
 
 export default function renderTodos(project) {

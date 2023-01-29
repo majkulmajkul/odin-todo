@@ -1,7 +1,7 @@
 import renderTodos from "./renderTodos";
 import renderProjects from "./renderProjects";
-import newToDoCard from "./newToDoCard";
-import newProjectCard from "./newProjectCard";
+import { newToDoCard, newProjectCard } from "./components";
+
 import { Todo, Project } from "./dataClasses";
 
 const handleEvents = (function () {
