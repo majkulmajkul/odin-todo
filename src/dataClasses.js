@@ -45,6 +45,10 @@ class ProjectList {
     )[0];
     console.log("New Active Project:", this.activeProject);
   };
+
+  addProject = (project) => {
+    this.projects.push(project);
+  };
 }
 
 export { Todo, Project, ProjectList };

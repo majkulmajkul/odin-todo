@@ -1,6 +1,8 @@
 import renderTodos from "./renderTodos";
+import renderProjects from "./renderProjects";
 import newToDoCard from "./newToDoCard";
-import { Todo } from "./dataClasses";
+import newProjectCard from "./newProjectCard";
+import { Todo, Project } from "./dataClasses";
 
 const handleEvents = (function () {
   function selectProject(project, projectList) {
@@ -29,11 +31,26 @@ const handleEvents = (function () {
     renderTodos(project);
   }
 
+  function showProjectForm(projectList) {
+    const projectsContainer = document.querySelector(".projects-container");
+    projectsContainer.appendChild(newProjectCard(projectList));
+    console.log("New Project initiated");
+  }
+
+  function submitNewProject(projectList) {
+    const newProjectName = document.querySelector("#new-project-name").value;
+    const thisProject = new Project(newProjectName);
+    projectList.addProject(thisProject);
+    renderProjects(projectList);
+  }
+
   return {
     selectProject,
     deleteTodoAndRerender,
     showNewTodoForm,
     submitNewTodo,
+    showProjectForm,
+    submitNewProject,
   };
 })();
 
