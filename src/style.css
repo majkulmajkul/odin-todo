@@ -28,9 +28,6 @@ body{
 
 }
 
-#new-todo-form-container{
-    position : absolute;
-    z-index: 1;
-    top: 1rem;
-    visibility: hidden;
+label{
+    display: block;
 }

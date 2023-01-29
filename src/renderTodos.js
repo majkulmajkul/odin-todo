@@ -1,5 +1,5 @@
 import toDoCard from "./todoCard";
-import renderNewToDoForm from "./renderNewTodoForm";
+import { handleEvents } from "./handleEvents";
 
 export default function renderTodos(project) {
   const todosContainer = document.querySelector(".todos-container");
@@ -14,6 +14,8 @@ export default function renderTodos(project) {
 
   const newTodo = document.createElement("button");
   newTodo.textContent = "Add new";
-  newTodo.addEventListener("click", () => renderNewToDoForm(project));
+  newTodo.addEventListener("click", () =>
+    handleEvents.showNewTodoForm(project)
+  );
   todosContainer.appendChild(newTodo);
 }
