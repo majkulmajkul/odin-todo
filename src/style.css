@@ -1,0 +1,29 @@
+body{
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.main-container{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 20fr;
+    grid-template-columns: 1fr 5fr;
+}
+
+.top-row{
+    grid-area: 1 / 1 / 2 / -1;
+    background-color: antiquewhite;
+}
+
+.projects-container{
+    grid-area: 2 / 1 / -1 / 2;
+    background-color: aqua;
+}
+
+.todos-container{
+    grid-area: 2 / 2 / -1 / -1;
+    background-color: beige;
+
+}
