@@ -33,4 +33,18 @@ class Project {
   };
 }
 
-export { Todo, Project };
+class ProjectList {
+  constructor(projects) {
+    this.projects = projects;
+    this.activeProject = this.projects[0];
+  }
+
+  setActiveProject = (projectId) => {
+    this.activeProject = this.projects.filter(
+      (project) => project.id === projectId
+    )[0];
+    console.log("New Active Project:", this.activeProject);
+  };
+}
+
+export { Todo, Project, ProjectList };

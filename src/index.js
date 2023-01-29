@@ -1,4 +1,4 @@
-import { Project, Todo } from "./dataClasses";
+import { Project, Todo, ProjectList } from "./dataClasses";
 import renderProjects from "./renderProjects";
 import renderTodos from "./renderTodos";
 
@@ -30,7 +30,7 @@ const thirdTodo = new Todo(
 );
 secondProject.addTodo(thirdTodo);
 
-const allProjects = [firstProject, secondProject];
+const allProjects = new ProjectList([firstProject, secondProject]);
 
 renderProjects(allProjects);
-renderTodos(firstProject);
+renderTodos(allProjects.activeProject);
