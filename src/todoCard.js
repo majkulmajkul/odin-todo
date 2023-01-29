@@ -1,4 +1,4 @@
-import renderTodos from "./renderTodos";
+import { handleEvents } from "./handleEvents";
 
 export default function toDoCard(todo, project) {
   const toDoCardContent = document.createElement("div");
@@ -16,10 +16,9 @@ export default function toDoCard(todo, project) {
 
   const deleteText = document.createElement("p");
   deleteText.textContent = "Delete";
-  deleteText.addEventListener("click", () => {
-    project.deleteTodo(todo.id);
-    renderTodos(project);
-  });
+  deleteText.addEventListener("click", () =>
+    handleEvents.deleteTodoAndRerender(project, todo)
+  );
 
   toDoCardContent.appendChild(toDoCardTitle);
   toDoCardContent.appendChild(toDoCardDueDate);

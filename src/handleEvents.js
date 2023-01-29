@@ -6,7 +6,12 @@ const handleEvents = (function () {
     projectList.setActiveProject(project.id);
   }
 
-  return { selectProject };
+  function deleteTodoAndRerender(project, todo) {
+    project.deleteTodo(todo.id);
+    renderTodos(project);
+  }
+
+  return { selectProject, deleteTodoAndRerender };
 })();
 
 export { handleEvents };
