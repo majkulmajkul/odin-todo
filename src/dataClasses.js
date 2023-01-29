@@ -1,8 +1,11 @@
 import uniqid from "uniqid";
 
 class Todo {
-  constructor(title, dueDate) {
-    (this.id = uniqid()), (this.title = title);
+  constructor(title, dueDate, description, priority) {
+    this.id = uniqid();
+    this.title = title;
+    this.description = description;
+    this.priority = priority;
     this.dueDate = dueDate;
     this.done = false;
   }
