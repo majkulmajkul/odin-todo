@@ -1,5 +1,6 @@
 import { Project, Todo, ProjectList } from "./dataClasses";
 import { render } from "./render";
+import { loadFromLocalStorage } from "./utils";
 
 import "./style.css";
 
@@ -29,7 +30,10 @@ const thirdTodo = new Todo(
 );
 secondProject.addTodo(thirdTodo);
 
-const allProjects = new ProjectList([firstProject, secondProject]);
+const allProjects =
+  loadFromLocalStorage() || new ProjectList([firstProject, secondProject]);
+
+console.log(allProjects);
 
 render.renderProjects(allProjects);
 render.renderTodos(allProjects);

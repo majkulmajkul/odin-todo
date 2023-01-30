@@ -1,5 +1,6 @@
 import { newToDoCard, newProjectCard } from "./components";
 import { render } from "./render";
+import { saveToLocalStorage, loadFromLocalStorage } from "./utils";
 
 import { Todo, Project } from "./dataClasses";
 
@@ -12,6 +13,7 @@ const handleEvents = (function () {
   function deleteTodoAndRerender(todo, projectList) {
     projectList.activeProject.deleteTodo(todo.id);
     render.renderTodos(projectList);
+    saveToLocalStorage(projectList);
   }
 
   function showNewTodoForm(projectList) {
@@ -28,6 +30,7 @@ const handleEvents = (function () {
     const thisTodo = new Todo(title, dueDate, description, priority);
     projectList.activeProject.addTodo(thisTodo);
     render.renderTodos(projectList);
+    saveToLocalStorage(projectList);
   }
 
   function showNewProjectForm(projectList) {
@@ -41,12 +44,14 @@ const handleEvents = (function () {
     const thisProject = new Project(newProjectName);
     projectList.addProject(thisProject);
     render.renderProjects(projectList);
+    saveToLocalStorage(projectList);
   }
 
   function markCompletedandRerender(todo, projectList) {
     console.log(projectList.activeProject.toDos);
     todo.toggleCompleted();
     render.renderTodos(projectList);
+    saveToLocalStorage(projectList);
   }
 
   return {
