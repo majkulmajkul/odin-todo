@@ -26,14 +26,14 @@ function newProjectCard(projectList) {
   return projectFormContainer;
 }
 
-function newToDoCard(project) {
+function newToDoCard(projectList) {
   const newTodoContainer = document.createElement("div");
   newTodoContainer.id = "new-todo-form-container";
 
   const newTodoForm = document.createElement("form");
   newTodoForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    handleEvents.submitNewTodo(project);
+    handleEvents.submitNewTodo(projectList);
   });
 
   const todoTitleLabel = document.createElement("label");
@@ -86,7 +86,7 @@ function newToDoCard(project) {
   return newTodoContainer;
 }
 
-function toDoCard(todo, project) {
+function toDoCard(todo, projectList) {
   const toDoCardContent = document.createElement("div");
 
   todo.done && toDoCardContent.classList.add("completed");
@@ -106,13 +106,13 @@ function toDoCard(todo, project) {
   const deleteText = document.createElement("p");
   deleteText.textContent = "Delete";
   deleteText.addEventListener("click", () =>
-    handleEvents.deleteTodoAndRerender(project, todo)
+    handleEvents.deleteTodoAndRerender(todo, projectList)
   );
 
   const markCompletedText = document.createElement("p");
   markCompletedText.textContent = "Mark completed";
   markCompletedText.addEventListener("click", () =>
-    handleEvents.markCompletedandRerender(project, todo)
+    handleEvents.markCompletedandRerender(todo, projectList)
   );
 
   toDoCardContent.appendChild(toDoCardTitle);

@@ -2,13 +2,12 @@ import { toDoCard } from "./components";
 import { handleEvents } from "./handleEvents";
 
 const render = (function () {
-  function renderTodos(project) {
+  function renderTodos(projectList) {
+    console.log("active project from renderTodos", projectList);
     const todosContainer = document.querySelector(".todos-container");
     todosContainer.innerHTML = "";
-    for (const todo of project.toDos) {
-      const thisToDoCard = toDoCard(todo, project);
-
-      thisToDoCard.addEventListener("click", todo.testClick);
+    for (const todo of projectList.activeProject.toDos) {
+      const thisToDoCard = toDoCard(todo, projectList);
 
       todosContainer.appendChild(thisToDoCard);
     }
@@ -16,7 +15,7 @@ const render = (function () {
     const newTodo = document.createElement("button");
     newTodo.textContent = "Add new";
     newTodo.addEventListener("click", () =>
-      handleEvents.showNewTodoForm(project)
+      handleEvents.showNewTodoForm(projectList)
     );
     todosContainer.appendChild(newTodo);
   }

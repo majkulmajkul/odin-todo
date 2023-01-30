@@ -32,4 +32,4 @@ secondProject.addTodo(thirdTodo);
 const allProjects = new ProjectList([firstProject, secondProject]);
 
 render.renderProjects(allProjects);
-render.renderTodos(allProjects.activeProject);
+render.renderTodos(allProjects);

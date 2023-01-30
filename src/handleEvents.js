@@ -5,29 +5,29 @@ import { Todo, Project } from "./dataClasses";
 
 const handleEvents = (function () {
   function selectProject(project, projectList) {
-    render.renderTodos(project);
     projectList.setActiveProject(project.id);
+    render.renderTodos(projectList);
   }
 
-  function deleteTodoAndRerender(project, todo) {
-    project.deleteTodo(todo.id);
-    render.renderTodos(project);
+  function deleteTodoAndRerender(todo, projectList) {
+    projectList.activeProject.deleteTodo(todo.id);
+    render.renderTodos(projectList);
   }
 
-  function showNewTodoForm(project) {
+  function showNewTodoForm(projectList) {
     const todosContainer = document.querySelector(".todos-container");
-    todosContainer.appendChild(newToDoCard(project));
+    todosContainer.appendChild(newToDoCard(projectList));
   }
 
-  function submitNewTodo(project) {
-    console.log("Submitted");
+  function submitNewTodo(projectList) {
+    console.log(projectList);
     const title = document.querySelector("#todo-title-input").value;
     const description = document.querySelector("#todo-description-input").value;
     const priority = document.querySelector("#todo-priority-input").value;
     const dueDate = document.querySelector("#todo-duedate-input").value;
     const thisTodo = new Todo(title, dueDate, description, priority);
-    project.addTodo(thisTodo);
-    render.renderTodos(project);
+    projectList.activeProject.addTodo(thisTodo);
+    render.renderTodos(projectList);
   }
 
   function showNewProjectForm(projectList) {
@@ -43,9 +43,10 @@ const handleEvents = (function () {
     render.renderProjects(projectList);
   }
 
-  function markCompletedandRerender(project, todo) {
+  function markCompletedandRerender(todo, projectList) {
+    console.log(projectList.activeProject.toDos);
     todo.toggleCompleted();
-    render.renderTodos(project);
+    render.renderTodos(projectList);
   }
 
   return {
