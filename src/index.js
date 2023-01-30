@@ -1,6 +1,5 @@
 import { Project, Todo, ProjectList } from "./dataClasses";
-import renderProjects from "./renderProjects";
-import renderTodos from "./renderTodos";
+import { render } from "./render";
 
 import "./style.css";
 
@@ -32,5 +31,5 @@ secondProject.addTodo(thirdTodo);
 
 const allProjects = new ProjectList([firstProject, secondProject]);
 
-renderProjects(allProjects);
-renderTodos(allProjects.activeProject);
+render.renderProjects(allProjects);
+render.renderTodos(allProjects.activeProject);

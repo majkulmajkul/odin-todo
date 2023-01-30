@@ -1,18 +1,17 @@
-import renderTodos from "./renderTodos";
-import renderProjects from "./renderProjects";
 import { newToDoCard, newProjectCard } from "./components";
+import { render } from "./render";
 
 import { Todo, Project } from "./dataClasses";
 
 const handleEvents = (function () {
   function selectProject(project, projectList) {
-    renderTodos(project);
+    render.renderTodos(project);
     projectList.setActiveProject(project.id);
   }
 
   function deleteTodoAndRerender(project, todo) {
     project.deleteTodo(todo.id);
-    renderTodos(project);
+    render.renderTodos(project);
   }
 
   function showNewTodoForm(project) {
@@ -28,7 +27,7 @@ const handleEvents = (function () {
     const dueDate = document.querySelector("#todo-duedate-input").value;
     const thisTodo = new Todo(title, dueDate, description, priority);
     project.addTodo(thisTodo);
-    renderTodos(project);
+    render.renderTodos(project);
   }
 
   function showProjectForm(projectList) {
@@ -41,7 +40,7 @@ const handleEvents = (function () {
     const newProjectName = document.querySelector("#new-project-name").value;
     const thisProject = new Project(newProjectName);
     projectList.addProject(thisProject);
-    renderProjects(projectList);
+    render.renderProjects(projectList);
   }
 
   return {
