@@ -43,6 +43,11 @@ const handleEvents = (function () {
     render.renderProjects(projectList);
   }
 
+  function markCompletedandRerender(project, todo) {
+    todo.toggleCompleted();
+    render.renderTodos(project);
+  }
+
   return {
     selectProject,
     deleteTodoAndRerender,
@@ -50,6 +55,7 @@ const handleEvents = (function () {
     submitNewTodo,
     showProjectForm,
     submitNewProject,
+    markCompletedandRerender,
   };
 })();
 

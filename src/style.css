@@ -31,3 +31,8 @@ body{
 label{
     display: block;
 }
+
+.completed{
+    text-decoration: line-through;
+    color: darkgrey;
+}

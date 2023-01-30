@@ -10,8 +10,8 @@ class Todo {
     this.done = false;
   }
 
-  markAsCompleted = () => {
-    this.done = true;
+  toggleCompleted = () => {
+    !this.done ? (this.done = true) : (this.done = false);
   };
 
   testClick = () => {

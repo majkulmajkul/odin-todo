@@ -88,6 +88,9 @@ function newToDoCard(project) {
 
 function toDoCard(todo, project) {
   const toDoCardContent = document.createElement("div");
+
+  todo.done && toDoCardContent.classList.add("completed");
+
   const toDoCardTitle = document.createElement("h3");
   toDoCardTitle.textContent = todo.title;
 
@@ -106,10 +109,17 @@ function toDoCard(todo, project) {
     handleEvents.deleteTodoAndRerender(project, todo)
   );
 
+  const markCompletedText = document.createElement("p");
+  markCompletedText.textContent = "Mark completed";
+  markCompletedText.addEventListener("click", () =>
+    handleEvents.markCompletedandRerender(project, todo)
+  );
+
   toDoCardContent.appendChild(toDoCardTitle);
   toDoCardContent.appendChild(toDoCardDueDate);
   toDoCardContent.appendChild(toDoCardPriority);
   toDoCardContent.appendChild(toToCardDescription);
+  toDoCardContent.appendChild(markCompletedText);
   toDoCardContent.appendChild(deleteText);
 
   return toDoCardContent;
