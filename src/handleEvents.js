@@ -30,7 +30,7 @@ const handleEvents = (function () {
     render.renderTodos(project);
   }
 
-  function showProjectForm(projectList) {
+  function showNewProjectForm(projectList) {
     const projectsContainer = document.querySelector(".projects-container");
     projectsContainer.appendChild(newProjectCard(projectList));
     console.log("New Project initiated");
@@ -53,7 +53,7 @@ const handleEvents = (function () {
     deleteTodoAndRerender,
     showNewTodoForm,
     submitNewTodo,
-    showProjectForm,
+    showNewProjectForm,
     submitNewProject,
     markCompletedandRerender,
   };

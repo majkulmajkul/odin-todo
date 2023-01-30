@@ -37,7 +37,7 @@ const render = (function () {
     const newProjectButton = document.createElement("button");
     newProjectButton.textContent = "Add new";
     newProjectButton.addEventListener("click", () =>
-      handleEvents.showProjectForm(projectList)
+      handleEvents.showNewProjectForm(projectList)
     );
 
     projectsContainer.appendChild(newProjectButton);
