@@ -54,6 +54,43 @@ const handleEvents = (function () {
     saveToLocalStorage(projectList);
   }
 
+  function toggleTodoEdit(todo, projectList) {
+    console.log("edit initiated");
+    const todoContainertoBeEdited = document.querySelector("#" + todo.id);
+    todoContainertoBeEdited.innerHTML = "";
+    todoContainertoBeEdited.appendChild(
+      newToDoCard(
+        projectList,
+        todo.id,
+        todo.title,
+        todo.description,
+        todo.priority,
+        todo.dueDate,
+        saveEditedTodo
+      )
+    );
+  }
+
+  function saveEditedTodo(projectList, todoid) {
+    const title = document.querySelector("#todo-title-input").value;
+    const description = document.querySelector("#todo-description-input").value;
+    const priority = document.querySelector("#todo-priority-input").value;
+    const dueDate = document.querySelector("#todo-duedate-input").value;
+    console.log("Saving todo with id", todoid);
+    for (const project of projectList.projects) {
+      for (const todoItem of project.toDos) {
+        if (todoItem.id === todoid) {
+          todoItem.title = title;
+          todoItem.description = description;
+          todoItem.priority = priority;
+          todoItem.dueDate = dueDate;
+        }
+      }
+      saveToLocalStorage(projectList);
+      render.renderTodos(projectList);
+    }
+  }
+
   return {
     selectProject,
     deleteTodoAndRerender,
@@ -62,6 +99,7 @@ const handleEvents = (function () {
     showNewProjectForm,
     submitNewProject,
     markCompletedandRerender,
+    toggleTodoEdit,
   };
 })();
 

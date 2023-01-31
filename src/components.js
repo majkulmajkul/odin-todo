@@ -26,14 +26,22 @@ function newProjectCard(projectList) {
   return projectFormContainer;
 }
 
-function newToDoCard(projectList) {
+function newToDoCard(
+  projectList,
+  id = "",
+  title = "",
+  description = "",
+  priority = 1,
+  dueDate = "",
+  handlerFunction = handleEvents.submitNewTodo
+) {
   const newTodoContainer = document.createElement("div");
   newTodoContainer.id = "new-todo-form-container";
 
   const newTodoForm = document.createElement("form");
   newTodoForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    handleEvents.submitNewTodo(projectList);
+    handlerFunction(projectList, id);
   });
 
   const todoTitleLabel = document.createElement("label");
@@ -42,6 +50,7 @@ function newToDoCard(projectList) {
   const todoTitleInput = document.createElement("input");
   todoTitleInput.id = "todo-title-input";
   todoTitleInput.type = "text";
+  todoTitleInput.value = title;
 
   const todoDescriptionLabel = document.createElement("label");
   todoDescriptionLabel.htmlFor = "todo-description-input";
@@ -49,6 +58,7 @@ function newToDoCard(projectList) {
   const todoDescriptionInput = document.createElement("input");
   todoDescriptionInput.id = "todo-description-input";
   todoDescriptionInput.type = "text";
+  todoDescriptionInput.value = description;
 
   const todoPriorityLabel = document.createElement("label");
   todoPriorityLabel.htmlFor = "todo-priority-input";
@@ -56,6 +66,7 @@ function newToDoCard(projectList) {
   const todoPriorityInput = document.createElement("input");
   todoPriorityInput.id = "todo-priority-input";
   todoPriorityInput.type = "number";
+  todoPriorityInput.value = priority;
 
   const todoDueDateLabel = document.createElement("label");
   todoDueDateLabel.htmlFor = "todo-duedate-input";
@@ -64,6 +75,7 @@ function newToDoCard(projectList) {
   todoDueDateInput.required = true;
   todoDueDateInput.id = "todo-duedate-input";
   todoDueDateInput.type = "date";
+  todoDueDateInput.value = dueDate;
 
   const submitButton = document.createElement("button");
   submitButton.textContent = "Submit";
@@ -90,6 +102,7 @@ function newToDoCard(projectList) {
 function toDoCard(todo, projectList) {
   const toDoCardContent = document.createElement("div");
   toDoCardContent.classList.add("todo-card");
+  toDoCardContent.id = todo.id;
 
   todo.done && toDoCardContent.classList.add("completed");
 
@@ -117,12 +130,19 @@ function toDoCard(todo, projectList) {
     handleEvents.markCompletedandRerender(todo, projectList)
   );
 
+  const editTodoText = document.createElement("p");
+  editTodoText.textContent = "Edit";
+  editTodoText.addEventListener("click", () =>
+    handleEvents.toggleTodoEdit(todo, projectList)
+  );
+
   toDoCardContent.appendChild(toDoCardTitle);
   toDoCardContent.appendChild(toDoCardDueDate);
   toDoCardContent.appendChild(toDoCardPriority);
   toDoCardContent.appendChild(toToCardDescription);
   toDoCardContent.appendChild(markCompletedText);
   toDoCardContent.appendChild(deleteText);
+  toDoCardContent.appendChild(editTodoText);
 
   return toDoCardContent;
 }
