@@ -7,9 +7,29 @@ function saveToLocalStorage(object) {
 function loadFromLocalStorage() {
   const localStorageItem = JSON.parse(localStorage.getItem("todo-app-data"));
 
-  const parsedItem = false;
+  const interimProjectList = [];
 
-  return parsedItem;
+  for (const item of localStorageItem.projects) {
+    const thisProject = new Project(item.name);
+
+    for (const todo of item.toDos) {
+      thisProject.addTodo(
+        new Todo(
+          todo.title,
+          todo.dueDate,
+          todo.description,
+          todo.priority,
+          todo.done
+        )
+      );
+    }
+
+    interimProjectList.push(thisProject);
+  }
+
+  const parsedProjectList = new ProjectList(interimProjectList);
+
+  return parsedProjectList;
 }
 
 export { saveToLocalStorage, loadFromLocalStorage };

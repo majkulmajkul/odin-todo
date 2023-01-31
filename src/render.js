@@ -3,7 +3,6 @@ import { handleEvents } from "./handleEvents";
 
 const render = (function () {
   function renderTodos(projectList) {
-    console.log("active project from renderTodos", projectList);
     const todosContainer = document.querySelector(".todos-container");
     todosContainer.innerHTML = "";
     for (const todo of projectList.activeProject.toDos) {

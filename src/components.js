@@ -61,6 +61,7 @@ function newToDoCard(projectList) {
   todoDueDateLabel.htmlFor = "todo-duedate-input";
   todoDueDateLabel.textContent = "Due Date";
   const todoDueDateInput = document.createElement("input");
+  todoDueDateInput.required = true;
   todoDueDateInput.id = "todo-duedate-input";
   todoDueDateInput.type = "date";
 

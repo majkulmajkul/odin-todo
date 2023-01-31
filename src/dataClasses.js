@@ -1,13 +1,13 @@
 import uniqid from "uniqid";
 
 class Todo {
-  constructor(title, dueDate, description, priority) {
+  constructor(title, dueDate, description, priority, done = false) {
     this.id = uniqid();
     this.title = title;
     this.description = description;
     this.priority = priority;
     this.dueDate = dueDate;
-    this.done = false;
+    this.done = done;
   }
 
   toggleCompleted = () => {

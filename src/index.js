@@ -33,7 +33,5 @@ secondProject.addTodo(thirdTodo);
 const allProjects =
   loadFromLocalStorage() || new ProjectList([firstProject, secondProject]);
 
-console.log(allProjects);
-
 render.renderProjects(allProjects);
 render.renderTodos(allProjects);
