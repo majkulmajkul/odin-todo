@@ -89,6 +89,7 @@ function newToDoCard(projectList) {
 
 function toDoCard(todo, projectList) {
   const toDoCardContent = document.createElement("div");
+  toDoCardContent.classList.add("todo-card");
 
   todo.done && toDoCardContent.classList.add("completed");
 

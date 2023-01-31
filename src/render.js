@@ -28,7 +28,7 @@ const render = (function () {
       thisProject.addEventListener("click", () =>
         handleEvents.selectProject(project, projectList)
       );
-      thisProject.textContent = `${project.name} - ${project.id}`;
+      thisProject.textContent = `${project.name}`;
       projectsContainer.appendChild(thisProject);
     }
 
