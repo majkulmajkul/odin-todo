@@ -91,6 +91,21 @@ const handleEvents = (function () {
     }
   }
 
+  function renderAreYouSure(projectList, project) {
+    if (
+      confirm("Are you sure? This will delete the project and all it's todos!")
+    ) {
+      projectList.deleteProject(project.id);
+      console.log("Projectlist after delete:", projectList);
+      projectList.setActiveProject(projectList.projects[0].id);
+      render.renderProjects(projectList);
+      render.renderTodos(projectList);
+      saveToLocalStorage(projectList);
+    } else {
+      console.log("Nothing really...");
+    }
+  }
+
   return {
     selectProject,
     deleteTodoAndRerender,
@@ -100,6 +115,7 @@ const handleEvents = (function () {
     submitNewProject,
     markCompletedandRerender,
     toggleTodoEdit,
+    renderAreYouSure,
   };
 })();
 

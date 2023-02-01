@@ -11,12 +11,12 @@ const render = (function () {
       todosContainer.appendChild(thisToDoCard);
     }
 
-    const newTodo = document.createElement("button");
-    newTodo.textContent = "Add new";
-    newTodo.addEventListener("click", () =>
+    const newTodoButton = document.createElement("button");
+    newTodoButton.textContent = "Add new";
+    newTodoButton.addEventListener("click", () =>
       handleEvents.showNewTodoForm(projectList)
     );
-    todosContainer.appendChild(newTodo);
+    todosContainer.appendChild(newTodoButton);
   }
 
   function renderProjects(projectList) {
@@ -29,6 +29,15 @@ const render = (function () {
         handleEvents.selectProject(project, projectList)
       );
       thisProject.textContent = `${project.name}`;
+      const deleteProjectButton = document.createElement("span");
+      deleteProjectButton.className = "delete-project";
+      deleteProjectButton.textContent = " Delete Project";
+      deleteProjectButton.addEventListener("click", () =>
+        handleEvents.renderAreYouSure(projectList, project)
+      );
+
+      projectsContainer.appendChild(deleteProjectButton);
+
       projectsContainer.appendChild(thisProject);
     }
 

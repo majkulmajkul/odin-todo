@@ -49,6 +49,10 @@ class ProjectList {
   addProject = (project) => {
     this.projects.push(project);
   };
+
+  deleteProject = (projectId) => {
+    this.projects = this.projects.filter((item) => item.id !== projectId);
+  };
 }
 
 export { Todo, Project, ProjectList };
