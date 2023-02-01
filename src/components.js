@@ -35,6 +35,10 @@ function newToDoCard(
   dueDate = "",
   handlerFunction = handleEvents.submitNewTodo
 ) {
+  const today = new Date().toISOString().slice(0, 10);
+
+  !dueDate && (dueDate = today);
+
   const newTodoContainer = document.createElement("div");
   newTodoContainer.id = "new-todo-form-container";
 
