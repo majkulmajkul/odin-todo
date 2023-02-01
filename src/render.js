@@ -29,14 +29,17 @@ const render = (function () {
         handleEvents.selectProject(project, projectList)
       );
       thisProject.textContent = `${project.name}`;
-      const deleteProjectButton = document.createElement("span");
-      deleteProjectButton.className = "delete-project";
-      deleteProjectButton.textContent = " Delete Project";
-      deleteProjectButton.addEventListener("click", () =>
-        handleEvents.renderAreYouSure(projectList, project)
-      );
+      if (projectList.projects.length > 1) {
+        const deleteProjectButton = document.createElement("span");
 
-      projectsContainer.appendChild(deleteProjectButton);
+        deleteProjectButton.className = "delete-project";
+        deleteProjectButton.textContent = " Delete Project";
+        deleteProjectButton.addEventListener("click", () =>
+          handleEvents.renderAreYouSure(projectList, project)
+        );
+
+        projectsContainer.appendChild(deleteProjectButton);
+      }
 
       projectsContainer.appendChild(thisProject);
     }

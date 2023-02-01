@@ -95,15 +95,19 @@ const handleEvents = (function () {
     if (
       confirm("Are you sure? This will delete the project and all it's todos!")
     ) {
-      projectList.deleteProject(project.id);
-      console.log("Projectlist after delete:", projectList);
-      projectList.setActiveProject(projectList.projects[0].id);
-      render.renderProjects(projectList);
-      render.renderTodos(projectList);
-      saveToLocalStorage(projectList);
+      deleteProjectAndRerender(projectList, project);
     } else {
       console.log("Nothing really...");
     }
+  }
+
+  function deleteProjectAndRerender(projectList, project) {
+    projectList.deleteProject(project.id);
+    console.log("Projectlist after delete:", projectList);
+    projectList.setActiveProject(projectList.projects[0].id);
+    render.renderProjects(projectList);
+    render.renderTodos(projectList);
+    saveToLocalStorage(projectList);
   }
 
   return {
